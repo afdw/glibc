@@ -28,7 +28,7 @@ extern int rtld_errno attribute_hidden;
 #  else
 #   define errno errno		/* For #ifndef errno tests.  */
 #  endif
-extern __thread int errno attribute_tls_model_ie;
+extern /* __thread */ int errno attribute_tls_model_ie;
 
 # endif	/* IS_IN_LIB */
 

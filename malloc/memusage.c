@@ -87,7 +87,7 @@ static unsigned long int inplace_mremap;
 static unsigned long int decreasing_mremap;
 static size_t current_heap;
 static size_t peak_use[3];
-static __thread uintptr_t start_sp;
+static /* __thread */ uintptr_t start_sp;
 
 /* A few macros to make the source more readable.  */
 #define peak_heap       peak_use[0]

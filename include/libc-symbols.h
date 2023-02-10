@@ -299,16 +299,22 @@ for linking")
 #define libc_freeres_ptr(decl) \
   __make_section_unallocated ("__libc_freeres_ptrs, \"aw\", %nobits") \
   decl __attribute__ ((section ("__libc_freeres_ptrs" __sec_comment)))
+#undef libc_freeres_ptr
+#define libc_freeres_ptr(decl) decl
 
 /* Resource freeing functions from libc.so go in this section.  */
 #define __libc_freeres_fn_section \
   __attribute__ ((__used__, section ("__libc_freeres_fn")))
+#undef __libc_freeres_fn_section
+#define __libc_freeres_fn_section
 
 /* Resource freeing functions for libc.so.  */
 #define libc_freeres_fn(name) \
   static void name (void) __attribute_used__ __libc_freeres_fn_section;	\
   text_set_element (__libc_subfreeres, name);				\
   static void name (void)
+#undef libc_freeres_fn
+#define libc_freeres_fn(name) static void name (void)
 
 /* Declare SYMBOL to be TYPE (`function' or `object') of SIZE bytes
    alias to ORIGINAL, when the assembler supports such declarations
@@ -424,7 +430,8 @@ for linking")
 # define attribute_hidden
 #endif
 
-#define attribute_tls_model_ie __attribute__ ((tls_model ("initial-exec")))
+// #define attribute_tls_model_ie __attribute__ ((tls_model ("initial-exec")))
+#define attribute_tls_model_ie
 
 #define attribute_relro __attribute__ ((section (".data.rel.ro")))
 
@@ -521,7 +528,7 @@ for linking")
 #  define hidden_proto_alias(name, alias, attrs...) \
   __hidden_proto_alias (name, , alias, ##attrs)
 #  define hidden_tls_proto(name, attrs...) \
-  __hidden_proto (name, __thread, __GI_##name, ##attrs)
+  __hidden_proto (name, /* __thread */, __GI_##name, ##attrs)
 #  define __hidden_proto(name, thread, internal, attrs...)	     \
   extern thread __typeof (name) name __asm__ (__hidden_asmname (#internal)) \
   __hidden_proto_hiddenattr (attrs);
@@ -546,7 +553,7 @@ for linking")
 #  define hidden_data_def(name)		hidden_def(name)
 #  define hidden_data_def_alias(name, alias) hidden_def_alias(name, alias)
 #  define hidden_tls_def(name)				\
-  __hidden_ver2 (__thread, __GI_##name, name, name);
+  __hidden_ver2 (/* __thread */, __GI_##name, name, name);
 #  define hidden_weak(name) \
 	__hidden_ver1(__GI_##name, name, name) __attribute__((weak));
 #  define hidden_data_weak(name)	hidden_weak(name)
@@ -592,7 +599,7 @@ for linking")
 #  define hidden_proto_alias(name, alias, attrs...) \
   __hidden_proto_alias (name, , alias, ##attrs)
 #   define hidden_tls_proto(name, attrs...) \
-  __hidden_proto (name, __thread, name, ##attrs)
+  __hidden_proto (name, /* __thread */, name, ##attrs)
 #  define __hidden_proto(name, thread, internal, attrs...)	     \
   extern thread __typeof (name) name __hidden_proto_hiddenattr (attrs);
 #  define __hidden_proto_alias(name, thread, internal, attrs...)     \

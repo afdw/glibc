@@ -24,6 +24,6 @@
 int
 __profile_frequency (void)
 {
-  return GLRO(dl_clktck);
+  return /* GLRO(dl_clktck) */ 0;
 }
 libc_hidden_def (__profile_frequency)

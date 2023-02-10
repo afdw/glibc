@@ -718,6 +718,7 @@ dist: dist-prepare
 	fi
 endif
 
+ifneq (0,0)
 INSTALL: manual/install-plain.texi manual/macros.texi \
 	 $(common-objpfx)manual/pkgvers.texi manual/install.texi
 	makeinfo --no-validate --plaintext --no-number-sections \
@@ -731,6 +732,7 @@ INSTALL: manual/install-plain.texi manual/macros.texi \
 $(common-objpfx)manual/%: FORCE
 	$(MAKE) $(PARALLELMFLAGS) -C manual $@
 FORCE:
+endif
 
 iconvdata/% localedata/% po/%: FORCE
 	$(MAKE) $(PARALLELMFLAGS) -C $(@D) $(@F)

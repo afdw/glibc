@@ -192,7 +192,7 @@ extern struct __pthread *_pthread_self (void);
 #endif
 
 /* Stores the stack of cleanup handlers for the thread.  */
-extern __thread struct __pthread_cancelation_handler *__pthread_cleanup_stack;
+extern /* __thread */ struct __pthread_cancelation_handler *__pthread_cleanup_stack;
 
 
 /* Initialize the pthreads library.  */

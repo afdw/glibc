@@ -898,7 +898,8 @@ symbol_set_declare (__libc_IO_vtables)
 
 /* libio vtables need to carry this attribute so that they pass
    validation.  */
-#define libio_vtable __attribute__ ((section ("__libc_IO_vtables")))
+// #define libio_vtable __attribute__ ((section ("__libc_IO_vtables")))
+#define libio_vtable
 
 #ifdef SHARED
 /* If equal to &_IO_vtable_check (with pointer guard protection),

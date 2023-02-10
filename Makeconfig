@@ -1136,7 +1136,7 @@ subdir-srcdirs = $(foreach dir,$(subdirs),\
 	sed '/^[ 	]*#/d;/^[ 	]*$$/d' $< > $@T
 	mv -f $@T $@
 
-ifeq (yes, $(build-shared))
+# ifeq (yes, $(build-shared))
 
 # To generate a header to support more than one ABI for different
 # architecture variants, the CPU/Makefile defines abi-variants to be a
@@ -1199,7 +1199,7 @@ $(common-objpfx)libc-modules.stmp: $(..)scripts/gen-libc-modules.awk \
 	$(move-if-change) ${@:stmp=T} ${@:stmp=h}
 	touch $@
 
-endif
+# endif
 
 # Build the tunables list header early since it could be used by any module in
 # glibc.
@@ -1229,7 +1229,7 @@ before-compile += $(common-objpfx)gcc-macros.h
 
 # Generate version maps, but wait until sysdep-subdirs is known
 ifeq ($(sysd-sorted-done),t)
-ifeq ($(build-shared),yes)
+# ifeq ($(build-shared),yes)
 -include $(common-objpfx)sysd-versions
 -include $(common-objpfx)Versions.mk
 $(addprefix $(common-objpfx),$(version-maps)): $(common-objpfx)sysd-versions
@@ -1279,7 +1279,7 @@ $(common-objpfx)versions.stmp: $(common-objpfx)Versions.all \
 	mv -f $(common-objpfx)sysd-versionsT $(common-objpfx)sysd-versions
 	touch $@
 endif # avoid-generated
-endif # $(build-shared) = yes
+# endif # $(build-shared) = yes
 
 -include $(common-objpfx)time64-compat.mk
 postclean-generated += time64-compat.mk

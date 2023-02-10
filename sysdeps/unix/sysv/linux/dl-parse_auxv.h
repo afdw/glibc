@@ -43,7 +43,7 @@ void _dl_parse_auxv (ElfW(auxv_t) *av, dl_parse_auxv_t auxv_values)
       auxv_values[av->a_type] = av->a_un.a_val;
 
   GLRO(dl_pagesize) = auxv_values[AT_PAGESZ];
-  __libc_enable_secure = auxv_values[AT_SECURE];
+  __libc_enable_secure = /* auxv_values[AT_SECURE] */ 0;
   GLRO(dl_platform) = (void *) auxv_values[AT_PLATFORM];
   GLRO(dl_hwcap) = auxv_values[AT_HWCAP];
   GLRO(dl_hwcap2) = auxv_values[AT_HWCAP2];

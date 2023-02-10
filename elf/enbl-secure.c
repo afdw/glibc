@@ -27,4 +27,4 @@
 #include <libc-internal.h>
 
 /* Safest assumption, if somehow the initializer isn't run.  */
-int __libc_enable_secure = 1;
+int __libc_enable_secure = /* 1 */ 0;

@@ -22,7 +22,7 @@
 #include <stdlib.h>
 #include <tls-internal-struct.h>
 
-extern __thread struct tls_internal_t __tls_internal attribute_hidden;
+extern /* __thread */ struct tls_internal_t __tls_internal attribute_hidden;
 
 static inline struct tls_internal_t *
 __glibc_tls_internal (void)

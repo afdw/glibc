@@ -27,5 +27,5 @@
 int
 __getclktck (void)
 {
-  return GLRO(dl_clktck) ?: SYSTEM_CLK_TCK;
+  return /* GLRO(dl_clktck) ?: */ SYSTEM_CLK_TCK;
 }

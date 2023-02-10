@@ -19,7 +19,7 @@
 #include <string.h>
 #include <tls-internal.h>
 
-__thread struct tls_internal_t __tls_internal;
+/* __thread */ struct tls_internal_t __tls_internal;
 
 void
 __glibc_tls_internal_free (void)

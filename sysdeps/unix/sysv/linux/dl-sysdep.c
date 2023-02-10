@@ -83,12 +83,12 @@ _dl_sysdep_parse_arguments (void **start_argptr,
     if (*tmp == NULL)
       {
 	/* Another necessary aliasing violation.  */
-	GLRO(dl_auxv) = (ElfW(auxv_t) *) (tmp + 1);
+	// GLRO(dl_auxv) = (ElfW(auxv_t) *) (tmp + 1);
 	break;
       }
 
   dl_parse_auxv_t auxv_values = { 0, };
-  _dl_parse_auxv (GLRO(dl_auxv), auxv_values);
+  // _dl_parse_auxv (GLRO(dl_auxv), auxv_values);
 
   args->phdr = (const ElfW(Phdr) *) auxv_values[AT_PHDR];
   args->phnum = auxv_values[AT_PHNUM];
@@ -138,7 +138,7 @@ _dl_sysdep_start (void **start_argptr,
     __libc_check_standard_fds ();
 
   (*dl_main) (dl_main_args.phdr, dl_main_args.phnum,
-              &dl_main_args.user_entry, GLRO(dl_auxv));
+              &dl_main_args.user_entry, /*GLRO(dl_auxv)*/ NULL);
   return dl_main_args.user_entry;
 }
 
@@ -161,6 +161,7 @@ _dl_show_auxv (void)
      close by (otherwise the array will be too large).  In case we have
      to support a platform where these requirements are not fulfilled
      some alternative implementation has to be used.  */
+#if 0
   for (av = GLRO(dl_auxv); av->a_type != AT_NULL; ++av)
     {
       static const struct
@@ -247,6 +248,7 @@ _dl_show_auxv (void)
 				buf + sizeof buf - 1, 16, 0);
       _dl_printf ("AT_??? (0x%s): 0x%s\n", val, val2);
     }
+#endif
 }
 
 #endif /* SHARED */

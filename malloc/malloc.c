@@ -3117,8 +3117,8 @@ typedef struct tcache_perthread_struct
   tcache_entry *entries[TCACHE_MAX_BINS];
 } tcache_perthread_struct;
 
-static __thread bool tcache_shutting_down = false;
-static __thread tcache_perthread_struct *tcache = NULL;
+static /* __thread */ bool tcache_shutting_down = false;
+static /* __thread */ tcache_perthread_struct *tcache = NULL;
 
 /* Process-wide key to try and catch a double-free in the same thread.  */
 static uintptr_t tcache_key;

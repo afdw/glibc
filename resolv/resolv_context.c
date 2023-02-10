@@ -49,7 +49,7 @@
    implement the res_n* functions in the resolver, and those do not
    call back into user code which could indirectly use the per-thread
    resolver state.  */
-static __thread struct resolv_context *current attribute_tls_model_ie;
+static /* __thread */ struct resolv_context *current attribute_tls_model_ie;
 
 /* The resolv_conf handling will gives us a ctx->conf pointer even if
    these fields do not match because a mis-match does not cause a loss

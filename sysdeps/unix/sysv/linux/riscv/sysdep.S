@@ -37,6 +37,9 @@ ENTRY (__syscall_set_errno)
 	neg a0, a0
 #if RTLD_PRIVATE_ERRNO
 	sw a0, rtld_errno, t1
+#elif 1
+	la t1, errno
+	sw a0, 0(t1)
 #elif defined(__PIC__)
 	la.tls.ie t1, errno
 	add t1, t1, tp

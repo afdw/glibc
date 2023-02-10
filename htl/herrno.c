@@ -23,7 +23,7 @@
 
 /* We need to have the error status variable of the resolver
    accessible in the libc.  */
-extern __thread int __h_errno;
+extern /* __thread */ int __h_errno;
 
 
 /* When threaded, h_errno may be a per-thread variable.  */

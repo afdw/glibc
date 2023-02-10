@@ -274,7 +274,7 @@ LIBC_START_MAIN (int (*main) (int, char **, char ** MAIN_AUXVEC_DECL),
   _dl_relocate_static_pie ();
 
   /* Perform IREL{,A} relocations.  */
-  ARCH_SETUP_IREL ();
+  // ARCH_SETUP_IREL ();
 
   /* The stack guard goes into the TCB, so initialize it early.  */
   ARCH_SETUP_TLS ();
@@ -282,34 +282,34 @@ LIBC_START_MAIN (int (*main) (int, char **, char ** MAIN_AUXVEC_DECL),
   /* In some architectures, IREL{,A} relocations happen after TLS setup in
      order to let IFUNC resolvers benefit from TCB information, e.g. powerpc's
      hwcap and platform fields available in the TCB.  */
-  ARCH_APPLY_IREL ();
+  // ARCH_APPLY_IREL ();
 
   /* Set up the stack checker's canary.  */
-  uintptr_t stack_chk_guard = _dl_setup_stack_chk_guard (_dl_random);
-# ifdef THREAD_SET_STACK_GUARD
-  THREAD_SET_STACK_GUARD (stack_chk_guard);
-# else
-  __stack_chk_guard = stack_chk_guard;
-# endif
+//   uintptr_t stack_chk_guard = _dl_setup_stack_chk_guard (_dl_random);
+// # ifdef THREAD_SET_STACK_GUARD
+//   THREAD_SET_STACK_GUARD (stack_chk_guard);
+// # else
+//   __stack_chk_guard = stack_chk_guard;
+// # endif
 
   /* Initialize libpthread if linked in.  */
   if (__pthread_initialize_minimal != NULL)
     __pthread_initialize_minimal ();
 
   /* Set up the pointer guard value.  */
-  uintptr_t pointer_chk_guard = _dl_setup_pointer_guard (_dl_random,
-							 stack_chk_guard);
-# ifdef THREAD_SET_POINTER_GUARD
-  THREAD_SET_POINTER_GUARD (pointer_chk_guard);
-# else
-  __pointer_chk_guard_local = pointer_chk_guard;
-# endif
+//   uintptr_t pointer_chk_guard = _dl_setup_pointer_guard (_dl_random,
+// 							 stack_chk_guard);
+// # ifdef THREAD_SET_POINTER_GUARD
+//   THREAD_SET_POINTER_GUARD (pointer_chk_guard);
+// # else
+//   __pointer_chk_guard_local = pointer_chk_guard;
+// # endif
 
 #endif /* !SHARED  */
 
   /* Register the destructor of the dynamic linker if there is any.  */
-  if (__glibc_likely (rtld_fini != NULL))
-    __cxa_atexit ((void (*) (void *)) rtld_fini, NULL, NULL);
+  // if (__glibc_likely (rtld_fini != NULL))
+  //   __cxa_atexit ((void (*) (void *)) rtld_fini, NULL, NULL);
 
 #ifndef SHARED
   /* Perform early initialization.  In the shared case, this function

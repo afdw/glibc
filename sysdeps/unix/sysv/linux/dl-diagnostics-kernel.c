@@ -26,6 +26,7 @@ print_auxv (void)
 {
   /* See _dl_show_auxv.  The code below follows the general output
      format for diagnostic dumps.  */
+#if 0
   unsigned int index = 0;
   for (ElfW(auxv_t) *av = GLRO(dl_auxv); av->a_type != AT_NULL; ++av)
     {
@@ -43,6 +44,7 @@ print_auxv (void)
       _dl_printf ("\n");
       ++index;
     }
+  #endif
 }
 
 /* Print one uname entry.  */

@@ -18,7 +18,7 @@
 # if IS_IN (libc)
 #  define __resp __libc_resp
 # endif
-extern __thread struct __res_state *__resp attribute_tls_model_ie;
+extern /* __thread */ struct __res_state *__resp attribute_tls_model_ie;
 # undef _res
 # define _res (*__resp)
 

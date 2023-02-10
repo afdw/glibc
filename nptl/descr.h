@@ -273,7 +273,7 @@ struct pthread
 
   /* Unwind information.  */
   struct pthread_unwind_buf *cleanup_jmp_buf;
-#define HAVE_CLEANUP_JMP_BUF
+// #define HAVE_CLEANUP_JMP_BUF
 
   /* Flags determining processing of cancellation.  */
   int cancelhandling;

@@ -83,6 +83,14 @@
 	neg a0, a0;						\
         sw a0, rtld_errno, t1;					\
         li a0, -1;
+#  elif 1
+#   define SYSCALL_ERROR_HANDLER(name)                          \
+.Lsyscall_error ## name:                                        \
+        li t1, -4096;                                           \
+        neg a0, a0;                                             \
+        la t1, errno;                                           \
+        sw a0, 0(t1);                                           \
+        li a0, -1;
 #  elif defined (__PIC__)
 #   define SYSCALL_ERROR_HANDLER(name)				\
 .Lsyscall_error ## name:					\

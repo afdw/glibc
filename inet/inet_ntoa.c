@@ -23,7 +23,7 @@
 /* The interface of this function is completely stupid, it requires a
    static buffer.  We relax this a bit in that we allow one buffer for
    each thread.  */
-static __thread char buffer[18];
+static /* __thread */ char buffer[18];
 
 
 char *
